@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+body{
+    background-color: lightgray;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 500px;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 40px;
+    background-image: linear-gradient(to bottom right, #00b09b
+    , #96c93d);
+}
+
+.error{
+    display: none;
+}
+.error-text{
+    margin-right: 240px;
+    margin-bottom: 12px;
+}
+.section1{
+    display: flex;
+    align-content: center;
+    width: 400px;
+    align-items: center;
+}
+.input_data{
+    width: 100%;
+    height: 55px;
+    margin-right: 15px;
+    border-radius: 30px;
+    color: black;
+    font-size: 20px;
+    border: none;
+    padding-left: 20px;
+    outline: none;
+}
+.input_data::placeholder{
+    color: rgb(132, 128, 128);
+    font-size: 17px;
+}
+
+.bi{
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+}
+.search-button{
+    border: none;
+    width: 79px;
+    height: 60px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.section2{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.degrees{
+    font-size: 80px;
+}
+.town{
+    font-size: 80px;
+    letter-spacing: 3px;
+}
+
+.section3{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    margin-bottom: 0px;
+}
+.humidity{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.wind{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.humidity-text, .wind-text{
+    font-size: 21px;
+} 
+.humidity-data,.wind-data{
+    font-size: 25px;
+}
+.section31{
+    display: flex;   
+    align-items: center; 
+
+}
+.section32{
+    display: flex;
+    align-items: center;
+}
+.section2, .section3, .section31, .section32{
+    display: none;
+}

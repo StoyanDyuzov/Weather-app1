@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Weather app</title>
+    <link rel="icon" type="images/x-icon" href="images/clouds.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mahajani&family=Open+Sans&family=Poppins:wght@200&family=Roboto:wght@300;400&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="weather.css" rel="stylesheet">
+
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="section1">
+                <input type="text" class="input_data" placeholder="city:">
+                <button class="search-button"><img src="images/search1.png" class="bi"></button>
+            </div>
+            <div class="error">
+                <p class="error-text">Invalid city name</p>
+            </div>
+        
+            <div class="section2">
+                <img src="images/clear.png" class="img-weather">
+                <h1 class="degrees">-&deg;c</h1>
+                <h1 class="town">New York</h1>
+            </div>
+            
+            <div class="section3">
+                <div class="section31">
+                    <img src="images/humidity.png" class="humidity">
+                    <div>
+                        <p class="humidity-data">-%</p>
+                        <p class="humidity-text">Humidity</p>
+                    </div>
+                </div>
+                <div class="section32">
+                    <img src="images/wind.png" class="wind">
+                    <div>
+                        <p class="wind-data">- km/h</p>
+                        <p class="wind-text">Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const apiKey = "c536f238268d3c21560062b235b42283";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        
+        const searchbox = document.querySelector(".input_data");
+        const searchbtn = document.querySelector(".search-button");
+        const weatherimg = document.querySelector(".img-weather");
+        
+        async function checkWeather(city){
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            if(response.status == 404)
+            {
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".section2").style.display = "none";
+                document.querySelector(".section3").style.display = "none";
+                document.querySelector(".section31").style.display = "none";
+                document.querySelector(".section32").style.display = "none";
+            }
+            var data = await response.json();
+            
+            console.log(data);
+            document.querySelector(".town").innerHTML = data.name;
+            document.querySelector(".degrees").innerHTML = Math.round(data.main.temp) + "&deg;c";
+            document.querySelector(".humidity-data").innerHTML = data.main.humidity + " %";
+            document.querySelector(".wind-data").innerHTML = data.wind.speed + " km/h"; 
+        
+            if(data.weather[0].main == "Clouds")
+            {
+                weatherimg.src = "images/clouds.png";
+            }
+            else if(data.weather[0].main == "Clear"){
+                weatherimg.src = "images/clear.png";
+            }
+            else if(data.weather[0].main == "Rain"){
+                weatherimg.src = "images/rain.png";
+            }
+            else if(data.weather[0].main == "Drizzle"){
+                weatherimg.src = "images/drizzle.png";
+            }
+            else if(data.weather[0].main == "Mist"){
+                weatherimg.src = "images/mist.png";
+            }
+
+            document.querySelector(".error").style.display = "none";
+            document.querySelector(".section2").style.display = "flex";
+            document.querySelector(".section3").style.display = "flex";
+            document.querySelector(".section31").style.display = "flex";
+            document.querySelector(".section32").style.display = "flex";
+        }
+        
+        searchbtn.addEventListener("click", ()=>{
+            checkWeather(searchbox.value);
+        });
+        
+    </script>
+</body>
+</html>
